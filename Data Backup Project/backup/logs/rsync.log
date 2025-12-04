@@ -1,0 +1,30 @@
+sending incremental file list
+created directory /backup/remote/home-mirror
+./
+.bash_history
+.bash_logout
+.bashrc
+.lesshst
+.profile
+.selected_editor
+.sudo_as_admin_successful
+.viminfo
+.cache/
+.cache/motd.legal-displayed
+.local/
+.local/share/
+.local/share/nano/
+.ssh/
+.ssh/authorized_keys
+archive/
+archive/1999/
+archive/2000/
+archive/2000/2001/
+archive/2000/2001/reports/
+archive/2000/2001/reports/Restaurants-Michelin/
+mycommands/
+mycommands/hello
+mycommands/ls
+
+sent 28.53K bytes  received 352 bytes  57.77K bytes/sec
+total size is 27.18K  speedup is 0.94

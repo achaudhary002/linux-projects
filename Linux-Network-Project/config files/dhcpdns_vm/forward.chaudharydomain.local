@@ -1,0 +1,25 @@
+$TTL 3600
+@       IN      SOA     ns1.chaudharydomain.local. admin.chaudharydomain.local. (
+                       20250101 ; Serial
+                       3600      ; Refresh
+                       1800      ; Retry
+                       604800    ; Expire
+                       86400 )   ; Negative Cache TTL
+
+; Name servers
+@       IN      NS      ns1.chaudharydomain.local.
+
+; DNS Server
+ns1     IN      A       10.20.20.10
+
+; Router
+router  IN      A       10.20.20.1
+
+; DHCP/DNS
+dhcpdns IN      A       10.20.20.10
+
+; Client
+client  IN      A       10.20.20.50
+
+; Web server in DMZ
+web     IN      A       10.30.30.10

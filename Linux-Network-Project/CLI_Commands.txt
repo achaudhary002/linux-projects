@@ -1,0 +1,61 @@
+To Enable IPv4 Forwarding:	
+	sudo nano /etc/sysctl.conf
+	net.ipv4.ip_forward=1
+	sudo sysctl -p
+
+Traffic Forwarding: 
+	post-up echo 1 > /proc/sys/net/ipv4/ip_forward 
+
+NAT forwarding Proxmox
+	iptables -t nat -A POSTROUTING -s 10.20.20.0/24 -o vmbr0 -j MASQUERADE
+	iptables -t nat -A POSTROUTING -s 10.30.30.0/24 -o vmbr0 -j MASQUERADE
+	iptables -A FORWARD -s 10.20.20.0/24 -j ACCEPT
+	iptables -A FORWARD -s 10.30.30.0/24 -j ACCEPT
+	iptables -A FORWARD -d 10.20.20.0/24 -m state --state ESTABLISHED,RELATED -j ACCEPT
+	iptables -A FORWARD -d 10.30.30.0/24 -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+	sudo iptables -t nat -L
+
+To add rule:
+	sudo ufw allow from 10.10.10.0/24 to any port 22
+	sudo ufw deny from 10.30.30.0/24 to 10.20.20.0/24
+	sudo ufw allow from 10.20.20.0/24 to 10.30.30.10 port 80 proto tcp
+	sudo ufw allow from 10.30.30.10 to 10.20.20.10 port 53 proto tcp
+	sudo ufw allow from 10.30.30.10 to 10.20.20.10 port 53 proto udp
+
+	sudo ufw status numbered
+	sudo ufw delete <number of rule>
+	sudo ufw reload
+
+
+netplan command:
+	sudo netplan apply
+	
+DNS dig command:
+		dig router.chaudharydomain.local @10.20.20.10
+
+	
+Testing: 
+	sudo systemctl reload service name
+	journalctl -u service name
+	sudo tail -n 50 /var/log/syslog |grep <parameter>
+	sudo systemctl restart service_name
+	sudo systemctl status service_name
+	ping web.chaudharydomain.local
+	ping router.chaudhardomain.local
+
+File Syntax Check:
+	sudo named-checkconf
+	sudo named-checkzone yourdomain.local /etc/bind/forward.chaudharydomain.local
+	sudo named-checkzone 20.20.10.in-addr.arpa /etc/bind/reverse.chaudharydomain.local
+
+
+OTHER:
+	ip a
+	ip link show
+	curl http://web.chaudharydomain.local
+
+	sudo apt update
+	sudo apt install bind9 bind9utils bind9-doc
+	sudo apt install nginx
+	su

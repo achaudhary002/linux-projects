@@ -1,0 +1,18 @@
+$TTL 3600
+@       IN      SOA     ns1.chaudharydomain.local. admin.chaudharydomain.local. (
+                       20250101
+                       3600
+                       1800
+                       604800
+                       86400 )
+
+@       IN      NS      ns1.chaudharydomain.local.
+
+10      IN      PTR     ns1.chaudharydomain.local.
+1       IN      PTR     router.chaudharydomain.local.
+10      IN      PTR     dhcpdns.chaudharydomain.local.
+50      IN      PTR     client.chaudharydomain.local.
+; DMZ
+; Reverse lookup does not work across subnets normally,
+; but we can add:
+; 10.30.30.x → separate reverse zone if needed
